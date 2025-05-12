@@ -5,16 +5,18 @@ import { parseGeneral, type GeneralScrapingOptions } from '@/general.js';
 
 export function test(url: URL): boolean {
 	return url.hostname === 'youtube.com'
+	|| url.hostname === 'm.youtube.com'
 	|| url.hostname === 'youtu.be';
 }
 
 export async function summarize(url: URL, opts?: GeneralScrapingOptions): Promise<Summary | null> {
 	let modifiedUrl = url.href;
-	if (url.hostname === 'youtu.be') {
-		const videoId = url.pathname.slice(1);
-		modifiedUrl = `https://www.youtube.com/watch?v=${videoId}`;
-	} else if (url.hostname === 'youtube.com') {
+
+	if (url.hostname === 'youtube.com' || url.hostname === 'm.youtube.com') {
 		modifiedUrl = `https://www.youtube.com${url.pathname}${url.search}`;
+	} else if (url.hostname === 'youtu.be') {
+		const videoId = url.pathname.substring(1);
+		modifiedUrl = `https://www.youtube.com/watch?v=${videoId}${url.search}`;
 	}
 
 	const args = getGotOptions(modifiedUrl, opts);
