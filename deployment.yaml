@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: summaly-app
-        image: ghcr.io/soli0222/summaly:5.2.1-psr.1
+        image: ghcr.io/soli0222/summaly:5.2.1-psr.2
         ports:
         - containerPort: 3000
