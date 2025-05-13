@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   summaly:
-    image: ghcr.io/soli0222/sammaly:5.2.1-psr.1
+    image: ghcr.io/soli0222/sammaly:5.2.1-psr.2
     ports:
       - "3000:3000"
     restart: always
