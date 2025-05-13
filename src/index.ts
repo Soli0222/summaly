@@ -156,7 +156,7 @@ export default function (fastify: FastifyInstance, options: SummalyOptions, done
 		try {
 			const summary = await summaly(url, {
 				lang: req.query.lang as string,
-				followRedirects: false,
+				followRedirects: true,
 				...options,
 			});
 
