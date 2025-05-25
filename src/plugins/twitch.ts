@@ -50,10 +50,7 @@ export async function summarize(url: URL): Promise<summary> {
 			height: playerHeight ? parseInt(playerHeight) : null,
 			allow: playerUrl ? [
 				'autoplay',
-				'clipboard-write',
 				'encrypted-media',
-				'picture-in-picture',
-				'web-share',
 				'fullscreen',
 			] : [],
 		},
