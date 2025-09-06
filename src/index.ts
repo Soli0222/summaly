@@ -161,14 +161,16 @@ export default function (fastify: FastifyInstance, options: SummalyOptions, done
 		try {
 			const summary = await summaly(url, {
 				lang: req.query.lang as string,
-				followRedirects: false,
 				...options,
 			});
 
 			return summary;
 		} catch (e) {
 			return reply.status(500).send({
-				error: e,
+				error: {
+					message: e instanceof Error ? e.message : String(e),
+					name: e instanceof Error ? e.name : 'Unknown',
+				},
 			});
 		}
 	});
