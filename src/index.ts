@@ -175,5 +175,12 @@ export default function (fastify: FastifyInstance, options: SummalyOptions, done
 		}
 	});
 
+	fastify.get('/health', async (req, reply) => {
+		return reply.status(200).send({
+			status: 'ok',
+			timestamp: new Date().toISOString(),
+		});
+	});
+
 	done();
 }
