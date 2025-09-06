@@ -1,0 +1,73 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    ":dependencyDashboard",
+    ":semanticCommits",
+    ":automergeDisabled"
+  ],
+  "labels": ["dependencies"],
+  "assignees": ["Soli0222"],
+  "packageRules": [
+    {
+      "matchManagers": ["npm"],
+      "matchUpdateTypes": ["patch", "pin", "digest"],
+      "automerge": true,
+      "automergeType": "pr",
+      "platformAutomerge": true
+    },
+    {
+      "matchManagers": ["npm"],
+      "matchUpdateTypes": ["minor"],
+      "groupName": "minor dependency updates",
+      "reviewers": ["Soli0222"]
+    },
+    {
+      "matchManagers": ["npm"],
+      "matchUpdateTypes": ["major"],
+      "groupName": "major dependency updates",
+      "reviewers": ["Soli0222"],
+      "prPriority": 10
+    },
+    {
+      "matchPackageNames": ["typescript", "@types/node"],
+      "groupName": "TypeScript and Node types",
+      "reviewers": ["Soli0222"]
+    },
+    {
+      "matchPackageNames": ["eslint", "@typescript-eslint/eslint-plugin", "@typescript-eslint/parser", "@misskey-dev/eslint-plugin"],
+      "groupName": "ESLint and TypeScript ESLint",
+      "reviewers": ["Soli0222"]
+    },
+    {
+      "matchPackageNames": ["vitest"],
+      "groupName": "Testing framework",
+      "reviewers": ["Soli0222"]
+    },
+    {
+      "matchPackageNames": ["node"],
+      "matchManagers": ["dockerfile"],
+      "groupName": "Docker Node.js version",
+      "reviewers": ["Soli0222"]
+    },
+    {
+      "matchPackageNames": ["pnpm"],
+      "groupName": "Package manager",
+      "reviewers": ["Soli0222"]
+    }
+  ],
+  "vulnerabilityAlerts": {
+    "enabled": true,
+    "labels": ["security"]
+  },
+  "lockFileMaintenance": {
+    "enabled": true,
+    "schedule": ["before 4am on the first day of the month"]
+  },
+  "prConcurrentLimit": 3,
+  "prHourlyLimit": 2,
+  "commitMessagePrefix": "chore:",
+  "commitMessageTopic": "update {{depName}}",
+  "commitMessageExtra": "to v{{newVersion}}",
+  "prTitle": "{{commitMessagePrefix}} {{commitMessageTopic}} {{commitMessageExtra}}"
+}
