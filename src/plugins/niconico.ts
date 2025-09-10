@@ -50,7 +50,6 @@ export async function summarize(url: URL, opts?: GeneralScrapingOptions): Promis
 					return {
 						...retryResult,
 						icon: 'https://resource.video.nimg.jp/web/images/favicon/favicon.ico',
-						description: videoId,
 						player: {
 							...retryResult.player,
 							url: `https://embed.nicovideo.jp/watch/${videoId}?autoplay=1`,
