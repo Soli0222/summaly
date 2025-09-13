@@ -41,6 +41,25 @@ npm run build
 npm run serve
 ```
 
+### Logging
+
+This package includes comprehensive logging functionality powered by [pino](https://github.com/pinojs/pino). The following events are automatically logged:
+
+1. **Request Logging**: All incoming requests with UUID, method, URL, query parameters, user agent, and IP address
+2. **OGP Fetch Logging**: HTTP requests made to fetch OGP data from target URLs, including response status and timing
+3. **Response Logging**: All outgoing responses with request UUID, status code, and response time
+4. **Error Logging**: Detailed error information including stack traces for debugging
+
+Each request is assigned a unique UUID for tracking across all log entries. Log output format can be controlled via environment variables:
+
+- `LOG_LEVEL`: Set logging level (debug, info, warn, error) - default: `info`
+- `NODE_ENV`: When set to `development`, logs are formatted with pino-pretty for better readability
+
+Example log output:
+```json
+{"level":"info","time":1731234567890,"requestId":"550e8400-e29b-41d4-a716-446655440000","method":"GET","url":"/?url=https://example.com","query":{"url":"https://example.com"},"msg":"Request received: GET /?url=https://example.com"}
+```
+
 #### opts (SummalyOptions)
 
 | Property                  | Type                   | Description                                                                                                                                                                         | Default                |

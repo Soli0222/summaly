@@ -4,68 +4,181 @@
     "config:recommended",
     ":dependencyDashboard",
     ":semanticCommits",
-    ":automergeDisabled"
+    ":automergeDisabled",
+    ":pinAllExceptPeerDependencies",
+    ":enablePreCommit"
   ],
+  "rangeStrategy": "pin",
   "labels": ["dependencies"],
   "assignees": ["Soli0222"],
+  "ignorePaths": ["**/test/**", "**/built/**"],
+  "pnpm": {
+    "enabled": true
+  },
+  "lockFileMaintenance": {
+    "enabled": true,
+    "schedule": ["before 4am on the first day of the month"],
+    "automerge": true,
+    "automergeType": "pr",
+    "commitMessageAction": "Lock file maintenance"
+  },
   "packageRules": [
     {
       "matchManagers": ["npm"],
       "matchUpdateTypes": ["patch", "pin", "digest"],
       "automerge": true,
       "automergeType": "pr",
-      "platformAutomerge": true
+      "platformAutomerge": true,
+      "excludePackageNames": ["typescript", "@types/node", "eslint", "@typescript-eslint/eslint-plugin", "@typescript-eslint/parser", "@misskey-dev/eslint-plugin"]
     },
     {
       "matchManagers": ["npm"],
       "matchUpdateTypes": ["minor"],
       "groupName": "minor dependency updates",
-      "reviewers": ["Soli0222"]
+      "reviewers": ["Soli0222"],
+      "excludePackageNames": ["typescript", "@types/node", "eslint", "@typescript-eslint/eslint-plugin", "@typescript-eslint/parser", "@misskey-dev/eslint-plugin", "vitest"]
     },
     {
       "matchManagers": ["npm"],
       "matchUpdateTypes": ["major"],
       "groupName": "major dependency updates",
       "reviewers": ["Soli0222"],
-      "prPriority": 10
+      "prPriority": 10,
+      "excludePackageNames": ["typescript", "@types/node", "eslint", "@typescript-eslint/eslint-plugin", "@typescript-eslint/parser", "@misskey-dev/eslint-plugin", "vitest"]
     },
     {
-      "matchPackageNames": ["typescript", "@types/node"],
-      "groupName": "TypeScript and Node types",
-      "reviewers": ["Soli0222"]
+      "matchPackageNames": ["typescript", "@types/node", "@types/debug", "@types/escape-regexp"],
+      "groupName": "TypeScript and type definitions",
+      "reviewers": ["Soli0222"],
+      "prPriority": 5
     },
     {
-      "matchPackageNames": ["eslint", "@typescript-eslint/eslint-plugin", "@typescript-eslint/parser", "@misskey-dev/eslint-plugin"],
-      "groupName": "ESLint and TypeScript ESLint",
-      "reviewers": ["Soli0222"]
+      "matchPackageNames": ["eslint", "@typescript-eslint/eslint-plugin", "@typescript-eslint/parser", "@misskey-dev/eslint-plugin", "eslint-plugin-import"],
+      "groupName": "ESLint ecosystem",
+      "reviewers": ["Soli0222"],
+      "prPriority": 3
     },
     {
       "matchPackageNames": ["vitest"],
       "groupName": "Testing framework",
+      "reviewers": ["Soli0222"],
+      "prPriority": 3
+    },
+    {
+      "matchPackageNames": ["fastify", "fastify-cli"],
+      "groupName": "Fastify framework",
+      "reviewers": ["Soli0222"],
+      "prPriority": 4
+    },
+    {
+      "matchPackageNames": ["cheerio", "got", "html-entities", "iconv-lite", "jschardet"],
+      "groupName": "Web scraping and parsing",
+      "reviewers": ["Soli0222"],
+      "prPriority": 2
+    },
+    {
+      "matchPackageNames": ["pino", "pino-pretty", "debug"],
+      "groupName": "Logging utilities",
+      "reviewers": ["Soli0222"]
+    },
+    {
+      "matchPackageNames": ["tsc-alias"],
+      "groupName": "Build tools",
       "reviewers": ["Soli0222"]
     },
     {
       "matchPackageNames": ["node"],
       "matchManagers": ["dockerfile"],
       "groupName": "Docker Node.js version",
-      "reviewers": ["Soli0222"]
+      "reviewers": ["Soli0222"],
+      "prPriority": 8
     },
     {
       "matchPackageNames": ["pnpm"],
-      "groupName": "Package manager",
+      "matchManagers": ["npm"],
+      "groupName": "Package manager (pnpm)",
+      "reviewers": ["Soli0222"],
+      "prPriority": 7
+    },
+    {
+      "matchFileNames": ["Dockerfile", "Dockerfile.*"],
+      "matchDepTypes": ["final"],
+      "groupName": "Docker base images",
+      "reviewers": ["Soli0222"],
+      "prPriority": 8
+    },
+    {
+      "matchPackageNames": ["pnpm"],
+      "matchManagers": ["dockerfile"],
+      "groupName": "Docker pnpm version",
+      "reviewers": ["Soli0222"],
+      "prPriority": 6
+    },
+    {
+      "matchManagers": ["github-actions"],
+      "matchUpdateTypes": ["patch", "pin", "digest"],
+      "automerge": true,
+      "automergeType": "pr",
+      "platformAutomerge": true
+    },
+    {
+      "matchManagers": ["github-actions"],
+      "matchUpdateTypes": ["minor"],
+      "groupName": "GitHub Actions minor updates",
       "reviewers": ["Soli0222"]
+    },
+    {
+      "matchManagers": ["github-actions"],
+      "matchUpdateTypes": ["major"],
+      "groupName": "GitHub Actions major updates",
+      "reviewers": ["Soli0222"],
+      "prPriority": 9
+    },
+    {
+      "matchPackageNames": ["actions/checkout", "actions/setup-node", "pnpm/action-setup"],
+      "groupName": "Core setup actions",
+      "reviewers": ["Soli0222"],
+      "prPriority": 4
+    },
+    {
+      "matchPackageNames": ["docker/login-action", "docker/setup-qemu-action", "docker/setup-buildx-action", "docker/build-push-action", "docker/metadata-action"],
+      "groupName": "Docker actions",
+      "reviewers": ["Soli0222"],
+      "prPriority": 5
+    },
+    {
+      "matchPackageNames": ["renovatebot/github-action"],
+      "groupName": "Renovate bot action",
+      "reviewers": ["Soli0222"],
+      "prPriority": 3
     }
   ],
+  "dockerfile": {
+    "enabled": true
+  },
+  "github-actions": {
+    "enabled": true
+  },
   "vulnerabilityAlerts": {
     "enabled": true,
-    "labels": ["security"]
+    "labels": ["security"],
+    "prPriority": 15,
+    "automerge": false,
+    "schedule": ["at any time"]
   },
-  "lockFileMaintenance": {
-    "enabled": true,
-    "schedule": ["before 4am on the first day of the month"]
-  },
-  "prConcurrentLimit": 3,
-  "prHourlyLimit": 2,
+  "osvVulnerabilityAlerts": true,
+  "transitiveRemediation": true,
+  "separateMinorPatch": true,
+  "separateMajorMinor": true,
+  "separateMultipleMajor": true,
+  "prCreation": "immediate",
+  "prNotPendingHours": 25,
+  "stabilityDays": 3,
+  "minimumReleaseAge": "3 days",
+  "prConcurrentLimit": 5,
+  "prHourlyLimit": 3,
+  "schedule": ["after 10pm and before 5am every weekday", "every weekend"],
+  "timezone": "Asia/Tokyo",
   "commitMessagePrefix": "chore:",
   "commitMessageTopic": "update {{depName}}",
   "commitMessageExtra": "to v{{newVersion}}",

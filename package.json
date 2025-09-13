@@ -1,6 +1,6 @@
 {
   "name": "@misskey-dev/summaly",
-  "version": "5.2.3-psr.3.0",
+  "version": "5.2.3-psr.4.0",
   "description": "Get web page's summary",
   "author": "syuilo <syuilotan@yahoo.co.jp>",
   "license": "MIT",
@@ -32,6 +32,7 @@
     "eslint-plugin-import": "^2.32.0",
     "fastify": "^5.4.0",
     "fastify-cli": "^7.4.0",
+    "pino-pretty": "^13.1.1",
     "tsc-alias": "^1.8.16",
     "typescript": "5.8.3",
     "vitest": "^3.2.4"
@@ -43,6 +44,7 @@
     "html-entities": "2.6.0",
     "iconv-lite": "0.6.3",
     "jschardet": "3.1.4",
+    "pino": "^9.9.5",
     "private-ip": "3.0.2"
   }
 }
