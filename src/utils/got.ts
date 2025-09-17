@@ -33,8 +33,8 @@ export type GotOptions = {
 
 const repo = JSON.parse(readFileSync(`${_dirname}/../../package.json`, 'utf8'));
 
-export const DEFAULT_RESPONSE_TIMEOUT = 20 * 1000;
-export const DEFAULT_OPERATION_TIMEOUT = 60 * 1000;
+export const DEFAULT_RESPONSE_TIMEOUT = process.env.SUMMALY_RESPONSE_TIMEOUT ? parseInt(process.env.SUMMALY_RESPONSE_TIMEOUT, 10) : 20 * 1000;
+export const DEFAULT_OPERATION_TIMEOUT = process.env.SUMMALY_OPERATION_TIMEOUT ? parseInt(process.env.SUMMALY_OPERATION_TIMEOUT, 10) : 60 * 1000;
 export const DEFAULT_MAX_RESPONSE_SIZE = 10 * 1024 * 1024;
 export const DEFAULT_BOT_UA = `SummalyBot/${repo.version}`;
 
