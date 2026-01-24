@@ -8,14 +8,14 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [20.10.0]
+        node-version: [24.13.0]
 
     steps:
       - uses: actions/checkout@v4
       - name: Install pnpm
         uses: pnpm/action-setup@v2
         with:
-          version: 8
+          version: 10.28.1
           run_install: false
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
