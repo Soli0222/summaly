@@ -24,7 +24,7 @@
     "@misskey-dev/eslint-plugin": "^2.2.0",
     "@types/debug": "4.1.12",
     "@types/escape-regexp": "^0.0.3",
-    "@types/node": "25.3.3",
+    "@types/node": "25.3.4",
     "@typescript-eslint/eslint-plugin": "^8.56.1",
     "@typescript-eslint/parser": "^8.56.1",
     "debug": "^4.4.3",
