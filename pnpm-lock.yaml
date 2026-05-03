@@ -34,8 +34,8 @@ importers:
         version: 10.3.1
     devDependencies:
       '@misskey-dev/eslint-plugin':
-        specifier: 2.1.0
-        version: 2.1.0(@eslint/compat@2.0.5(eslint@9.39.4))(@stylistic/eslint-plugin@5.10.0(eslint@9.39.4))(@typescript-eslint/eslint-plugin@8.59.1(@typescript-eslint/parser@8.59.1(eslint@9.39.4)(typescript@6.0.3))(eslint@9.39.4)(typescript@6.0.3))(@typescript-eslint/parser@8.59.1(eslint@9.39.4)(typescript@6.0.3))(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.59.1(eslint@9.39.4)(typescript@6.0.3))(eslint@9.39.4))(eslint@9.39.4)(globals@14.0.0)
+        specifier: 2.2.0
+        version: 2.2.0(@eslint/compat@2.0.5(eslint@9.39.4))(@eslint/js@9.39.4)(@stylistic/eslint-plugin@5.10.0(eslint@9.39.4))(@typescript-eslint/eslint-plugin@8.59.1(@typescript-eslint/parser@8.59.1(eslint@9.39.4)(typescript@6.0.3))(eslint@9.39.4)(typescript@6.0.3))(@typescript-eslint/parser@8.59.1(eslint@9.39.4)(typescript@6.0.3))(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.59.1(eslint@9.39.4)(typescript@6.0.3))(eslint@9.39.4))(eslint@9.39.4)(globals@14.0.0)
       '@types/escape-regexp':
         specifier: 0.0.3
         version: 0.0.3
@@ -214,16 +214,17 @@ packages:
   '@keyv/serialize@1.1.1':
     resolution: {integrity: sha512-dXn3FZhPv0US+7dtJsIi2R+c7qWYiReoEh5zUntWCf4oSpMNib8FDhSoed6m3QyZdx5hK7iLFkYk3rNxwt8vTA==}
 
-  '@misskey-dev/eslint-plugin@2.1.0':
-    resolution: {integrity: sha512-f++Vv1r3BQyGqEE0SB5algUZwRoTMZIYfVtpcuQ2fLuYUm0cQ5BBTs/gwAHPajVB2YD8F33gzPIReTKtuJyCwQ==}
+  '@misskey-dev/eslint-plugin@2.2.0':
+    resolution: {integrity: sha512-NlDtaFRaO2r4KRnacTiYK2Ax/z95ZvhszQ3gfZ7VWWQzPvgoQHSEBT6q94i1/HPzWrcR+l+76c3Y3T1V/yVPeg==}
     peerDependencies:
       '@eslint/compat': '>= 1'
-      '@stylistic/eslint-plugin': '>= 2'
+      '@eslint/js': '>= 9'
+      '@stylistic/eslint-plugin': '>= 5'
       '@typescript-eslint/eslint-plugin': '>= 8'
       '@typescript-eslint/parser': '>= 8'
       eslint: '>= 9'
       eslint-plugin-import: '>= 2'
-      globals: '>= 15'
+      globals: '>= 16'
 
   '@napi-rs/wasm-runtime@1.1.4':
     resolution: {integrity: sha512-3NQNNgA1YSlJb/kMH1ildASP9HW7/7kYnRI2szWJaofaS1hWmbGI4H+d3+22aGzXXN9IJ+n+GiFVcGipJP18ow==}
@@ -2237,9 +2238,10 @@ snapshots:
 
   '@keyv/serialize@1.1.1': {}
 
-  '@misskey-dev/eslint-plugin@2.1.0(@eslint/compat@2.0.5(eslint@9.39.4))(@stylistic/eslint-plugin@5.10.0(eslint@9.39.4))(@typescript-eslint/eslint-plugin@8.59.1(@typescript-eslint/parser@8.59.1(eslint@9.39.4)(typescript@6.0.3))(eslint@9.39.4)(typescript@6.0.3))(@typescript-eslint/parser@8.59.1(eslint@9.39.4)(typescript@6.0.3))(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.59.1(eslint@9.39.4)(typescript@6.0.3))(eslint@9.39.4))(eslint@9.39.4)(globals@14.0.0)':
+  '@misskey-dev/eslint-plugin@2.2.0(@eslint/compat@2.0.5(eslint@9.39.4))(@eslint/js@9.39.4)(@stylistic/eslint-plugin@5.10.0(eslint@9.39.4))(@typescript-eslint/eslint-plugin@8.59.1(@typescript-eslint/parser@8.59.1(eslint@9.39.4)(typescript@6.0.3))(eslint@9.39.4)(typescript@6.0.3))(@typescript-eslint/parser@8.59.1(eslint@9.39.4)(typescript@6.0.3))(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.59.1(eslint@9.39.4)(typescript@6.0.3))(eslint@9.39.4))(eslint@9.39.4)(globals@14.0.0)':
     dependencies:
       '@eslint/compat': 2.0.5(eslint@9.39.4)
+      '@eslint/js': 9.39.4
       '@stylistic/eslint-plugin': 5.10.0(eslint@9.39.4)
       '@typescript-eslint/eslint-plugin': 8.59.1(@typescript-eslint/parser@8.59.1(eslint@9.39.4)(typescript@6.0.3))(eslint@9.39.4)(typescript@6.0.3)
       '@typescript-eslint/parser': 8.59.1(eslint@9.39.4)(typescript@6.0.3)
