@@ -1,15 +1,10 @@
-import { dirname } from 'node:path';
-import { fileURLToPath } from 'node:url';
-import { readFileSync } from 'node:fs';
 import got, * as Got from 'got';
 import * as cheerio from 'cheerio';
-import PrivateIp from 'private-ip';
+import ipaddr from 'ipaddr.js';
+import type { IPv4, IPv6 } from 'ipaddr.js';
 import type { GeneralScrapingOptions } from '@/general.js';
 import { StatusError } from '@/utils/status-error.js';
 import { detectEncoding, toUtf8 } from '@/utils/encoding.js';
-
-const _filename = fileURLToPath(import.meta.url);
-const _dirname = dirname(_filename);
 
 export let agent: Got.Agents = {};
 
@@ -31,12 +26,10 @@ export type GotOptions = {
 	contentLengthRequired?: boolean;
 };
 
-const repo = JSON.parse(readFileSync(`${_dirname}/../../package.json`, 'utf8'));
-
 export const DEFAULT_RESPONSE_TIMEOUT = process.env.SUMMALY_RESPONSE_TIMEOUT ? parseInt(process.env.SUMMALY_RESPONSE_TIMEOUT, 10) : 20 * 1000;
 export const DEFAULT_OPERATION_TIMEOUT = process.env.SUMMALY_OPERATION_TIMEOUT ? parseInt(process.env.SUMMALY_OPERATION_TIMEOUT, 10) : 60 * 1000;
 export const DEFAULT_MAX_RESPONSE_SIZE = 10 * 1024 * 1024;
-export const DEFAULT_BOT_UA = `SummalyBot/${repo.version}`;
+export const DEFAULT_BOT_UA = `SummalyBot/${_VERSION_}`;
 
 export function getGotOptions(url: string, opts?: GeneralScrapingOptions): Omit<GotOptions, 'method'> {
 	return {
@@ -103,6 +96,8 @@ export async function getResponse(args: GotOptions) {
 	const timeout = args.responseTimeout ?? DEFAULT_RESPONSE_TIMEOUT;
 	const operationTimeout = args.operationTimeout ?? DEFAULT_OPERATION_TIMEOUT;
 
+	const abort = new AbortController();
+
 	const req = got<string>(args.url, {
 		method: args.method,
 		headers: args.headers,
@@ -122,16 +117,28 @@ export async function getResponse(args: GotOptions) {
 		retry: {
 			limit: 0,
 		},
+		signal: abort.signal,
 	});
 
-	const res = await receiveResponse({ req, opts: args });
+	const res = await receiveResponse({ req, opts: args, abort });
 
 	// SUMMALY_ALLOW_PRIVATE_IPはテスト用
 	// TODO: Try moving this to receiveResponse- ATM `got` doesn't provide a means
 	// to check the IP/response header data while streaming the response...
 	const allowPrivateIp = process.env.SUMMALY_ALLOW_PRIVATE_IP === 'true' || Object.keys(agent).length > 0;
-	if (!allowPrivateIp && res.ip && PrivateIp(res.ip)) {
-		throw new StatusError(`Private IP rejected ${res.ip}`, 400, 'Private IP Rejected');
+	if (!allowPrivateIp && res.ip != null) {
+		let ip: IPv4 | IPv6;
+		try {
+			ip = ipaddr.parse(res.ip);
+		} catch {
+			throw new StatusError(`Invalid IP ${res.ip}`, 500, 'Invalid IP');
+		}
+		if (ip.kind() === 'ipv6' && (ip as IPv6).isIPv4MappedAddress()) {
+			ip = (ip as IPv6).toIPv4Address();
+		}
+		if (ip.range() !== 'unicast') {
+			throw new StatusError(`Private IP rejected ${res.ip}`, 400, 'Private IP Rejected');
+		}
 	}
 
 	// Check html
@@ -158,8 +165,9 @@ export async function getResponse(args: GotOptions) {
 }
 
 async function receiveResponse<T>(args: {
-	req: Got.CancelableRequest<Got.Response<T>>,
+	req: Got.RequestPromise<Got.Response<T>>,
 	opts: GotOptions,
+	abort: AbortController,
 }) {
 	const req = args.req;
 	const maxSize = args.opts.contentLengthLimit ?? DEFAULT_MAX_RESPONSE_SIZE;
@@ -167,12 +175,17 @@ async function receiveResponse<T>(args: {
 	// 受信中のデータでサイズチェック
 	req.on('downloadProgress', (progress: Got.Progress) => {
 		if (progress.transferred > maxSize && progress.percent !== 1) {
-			req.cancel(`maxSize exceeded (${progress.transferred} > ${maxSize}) on response`);
+			args.abort.abort(`maxSize exceeded (${progress.transferred} > ${maxSize}) on response`);
 		}
 	});
 
 	// 応答取得 with ステータスコードエラーの整形
 	const res = await req.catch(e => {
+		const abortReason = args.abort.signal.reason;
+		if (args.abort.signal.aborted && typeof abortReason === 'string' && abortReason.length > 0) {
+			throw new Error(abortReason);
+		}
+
 		if (e instanceof Got.HTTPError) {
 			throw new StatusError(`${e.response.statusCode} ${e.response.statusMessage}`, e.response.statusCode, e.response.statusMessage);
 		} else {

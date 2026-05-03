@@ -4,9 +4,9 @@
  */
 
 import { randomUUID } from 'crypto';
-import { got, type Agents as GotAgents } from 'got';
+import got, { type Agents as GotAgents } from 'got';
 import type { FastifyInstance } from 'fastify';
-import { SummalyResult } from '@/summary.js';
+import { SummalyResult as _SummalyResult } from '@/summary.js';
 import { SummalyPlugin as _SummalyPlugin } from '@/iplugin.js';
 import { general, type GeneralScrapingOptions } from '@/general.js';
 import { DEFAULT_BOT_UA, DEFAULT_OPERATION_TIMEOUT, DEFAULT_RESPONSE_TIMEOUT, agent, setAgent } from '@/utils/got.js';
@@ -19,6 +19,8 @@ declare module 'fastify' {
 		startTime: number;
 	}
 }
+
+export type SummalyResult = _SummalyResult;
 
 export type SummalyPlugin = _SummalyPlugin;
 
