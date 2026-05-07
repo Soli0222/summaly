@@ -39,7 +39,7 @@
     "chardet": "2.1.1",
     "cheerio": "1.2.0",
     "escape-regexp": "0.0.1",
-    "got": "15.0.3",
+    "got": "15.0.5",
     "html-entities": "2.6.0",
     "iconv-lite": "0.7.2",
     "ipaddr.js": "2.4.0",
