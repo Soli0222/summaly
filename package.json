@@ -9,7 +9,7 @@
   "main": "./built/index.js",
   "type": "module",
   "types": "./built/index.d.ts",
-  "packageManager": "pnpm@11.0.8",
+  "packageManager": "pnpm@11.0.9",
   "files": [
     "built",
     "LICENSE"
