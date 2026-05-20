@@ -34,8 +34,8 @@ importers:
         version: 10.3.1
     devDependencies:
       '@misskey-dev/eslint-plugin':
-        specifier: 2.2.0
-        version: 2.2.0(@eslint/compat@2.0.5(eslint@9.39.4))(@eslint/js@9.39.4)(@stylistic/eslint-plugin@5.10.0(eslint@9.39.4))(@typescript-eslint/eslint-plugin@8.59.3(@typescript-eslint/parser@8.59.3(eslint@9.39.4)(typescript@6.0.3))(eslint@9.39.4)(typescript@6.0.3))(@typescript-eslint/parser@8.59.3(eslint@9.39.4)(typescript@6.0.3))(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.59.3(eslint@9.39.4)(typescript@6.0.3))(eslint@9.39.4))(eslint@9.39.4)(globals@14.0.0)
+        specifier: 2.2.1
+        version: 2.2.1(@eslint/compat@2.0.5(eslint@9.39.4))(@eslint/eslintrc@3.3.5)(@eslint/js@9.39.4)(@stylistic/eslint-plugin@5.10.0(eslint@9.39.4))(@typescript-eslint/eslint-plugin@8.59.3(@typescript-eslint/parser@8.59.3(eslint@9.39.4)(typescript@6.0.3))(eslint@9.39.4)(typescript@6.0.3))(@typescript-eslint/parser@8.59.3(eslint@9.39.4)(typescript@6.0.3))(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.59.3(eslint@9.39.4)(typescript@6.0.3))(eslint@9.39.4))(eslint@9.39.4)(globals@14.0.0)
       '@types/escape-regexp':
         specifier: 0.0.3
         version: 0.0.3
@@ -214,10 +214,11 @@ packages:
   '@keyv/serialize@1.1.1':
     resolution: {integrity: sha512-dXn3FZhPv0US+7dtJsIi2R+c7qWYiReoEh5zUntWCf4oSpMNib8FDhSoed6m3QyZdx5hK7iLFkYk3rNxwt8vTA==}
 
-  '@misskey-dev/eslint-plugin@2.2.0':
-    resolution: {integrity: sha512-NlDtaFRaO2r4KRnacTiYK2Ax/z95ZvhszQ3gfZ7VWWQzPvgoQHSEBT6q94i1/HPzWrcR+l+76c3Y3T1V/yVPeg==}
+  '@misskey-dev/eslint-plugin@2.2.1':
+    resolution: {integrity: sha512-m22didx8SBS8O7bY9m+KLVhveoWxsynrHDdPpCjeSTbbFvvA/VypOfsqfbKxZaJ0EszgkYdywxcfYUCl2ugy+A==}
     peerDependencies:
       '@eslint/compat': '>= 1'
+      '@eslint/eslintrc': '>= 3'
       '@eslint/js': '>= 9'
       '@stylistic/eslint-plugin': '>= 5'
       '@typescript-eslint/eslint-plugin': '>= 8'
@@ -2341,9 +2342,10 @@ snapshots:
 
   '@keyv/serialize@1.1.1': {}
 
-  '@misskey-dev/eslint-plugin@2.2.0(@eslint/compat@2.0.5(eslint@9.39.4))(@eslint/js@9.39.4)(@stylistic/eslint-plugin@5.10.0(eslint@9.39.4))(@typescript-eslint/eslint-plugin@8.59.3(@typescript-eslint/parser@8.59.3(eslint@9.39.4)(typescript@6.0.3))(eslint@9.39.4)(typescript@6.0.3))(@typescript-eslint/parser@8.59.3(eslint@9.39.4)(typescript@6.0.3))(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.59.3(eslint@9.39.4)(typescript@6.0.3))(eslint@9.39.4))(eslint@9.39.4)(globals@14.0.0)':
+  '@misskey-dev/eslint-plugin@2.2.1(@eslint/compat@2.0.5(eslint@9.39.4))(@eslint/eslintrc@3.3.5)(@eslint/js@9.39.4)(@stylistic/eslint-plugin@5.10.0(eslint@9.39.4))(@typescript-eslint/eslint-plugin@8.59.3(@typescript-eslint/parser@8.59.3(eslint@9.39.4)(typescript@6.0.3))(eslint@9.39.4)(typescript@6.0.3))(@typescript-eslint/parser@8.59.3(eslint@9.39.4)(typescript@6.0.3))(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.59.3(eslint@9.39.4)(typescript@6.0.3))(eslint@9.39.4))(eslint@9.39.4)(globals@14.0.0)':
     dependencies:
       '@eslint/compat': 2.0.5(eslint@9.39.4)
+      '@eslint/eslintrc': 3.3.5
       '@eslint/js': 9.39.4
       '@stylistic/eslint-plugin': 5.10.0(eslint@9.39.4)
       '@typescript-eslint/eslint-plugin': 8.59.3(@typescript-eslint/parser@8.59.3(eslint@9.39.4)(typescript@6.0.3))(eslint@9.39.4)(typescript@6.0.3)
