@@ -6,6 +6,8 @@ summaly
 [![][himawari-badge]][himasaku]
 [![][sakurako-badge]][himasaku]
 
+Get summary of web page.
+
 Installation
 ----------------------------------------------------------------
 ```
@@ -68,7 +70,7 @@ Example log output:
 | **followRedirects**       | *boolean*              | Whether follow redirects                                                                                                                                                            | `true`                 |
 | **plugins**               | *plugin[]* (see below) | Custom plugins                                                                                                                                                                      | `null`                 |
 | **agent**                 | *Got.Agents*           | Custom HTTP agent (see below)                                                                                                                                                       | `null`                 |
-| **userAgent**             | *string*               | User-Agent for the request                                                                                                                                                          | `SummalyBot/[version]` |
+| **userAgent**             | *string*               | User-Agent for the request                                                                                                                                                          | `SummalyBot/[version] (+[Link to README file in GitHub])` |
 | **responseTimeout**       | *number*               | Set timeouts for each phase, such as host name resolution and socket communication.                                                                                                 | `20000`                |
 | **operationTimeout**      | *number*               | Set the timeout from the start to the end of the request.                                                                                                                           | `60000`                |
 | **contentLengthLimit**    | *number*               | If set to true, an error will occur if the content-length value returned from the other server is larger than this parameter (or if the received body size exceeds this parameter). | `10485760`             |
@@ -108,6 +110,7 @@ A Promise of an Object that contains properties below:
 | **icon**             | *string* \| *null* | The url of the icon of the web page                        |
 | **description**      | *string* \| *null* | The description of the web page                            |
 | **thumbnail**        | *string* \| *null* | The url of the thumbnail of the web page                   |
+| **thumbnailStyle**   | *"summary"* \| *"summary_large_image"* \| *null* | The display style of the thumbnail                         |
 | **sitename**         | *string* \| *null* | The name of the web site                                   |
 | **player**           | *Player*           | The player of the web page                                 |
 | **sensitive**        | *boolean*          | Whether the url is sensitive                               |
@@ -154,9 +157,10 @@ will be ... ↓
 ```json
 {
 	"title": "【アイドルマスター】「Stage Bye Stage」(歌：島村卯月、渋谷凛、本田未央)",
-	"icon": "https://www.youtube.com/s/desktop/711fd789/img/logos/favicon.ico",
+	"icon": "https://www.youtube.com/s/desktop/14cba078/img/favicon.ico",
 	"description": "Website▶https://columbia.jp/idolmaster/Playlist▶https://www.youtube.com/playlist?list=PL83A2998CF3BBC86D2018年7月18日発売予定THE IDOLM@STER CINDERELLA GIRLS CG STAR...",
 	"thumbnail": "https://i.ytimg.com/vi/NMIEAhH_fTU/maxresdefault.jpg",
+	"thumbnailStyle": null,
 	"player": {
 		"url": "https://www.youtube.com/embed/NMIEAhH_fTU?feature=oembed",
 		"width": 200,
@@ -173,6 +177,7 @@ will be ... ↓
 	"sitename": "YouTube",
 	"sensitive": false,
 	"activityPub": null,
+	"fediverseCreator": null,
 	"url": "https://www.youtube.com/watch?v=NMIEAhH_fTU"
 }
 ```

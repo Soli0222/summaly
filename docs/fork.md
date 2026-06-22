@@ -5,8 +5,8 @@
 
 ## 比較基準
 
-- 比較ベース: `upstream/master` (= `99b5ac2` / Release 5.3.0)
-- 本フォークは upstream の 5.3.0 系列まで取り込み済みで、本ドキュメント時点での
+- 比較ベース: `upstream/master` (= `ca94773` / Release 5.5.1)
+- 本フォークは upstream の 5.5.1 系列まで取り込み済みで、本ドキュメント時点での
   `git merge-base HEAD upstream/master` は upstream の最新 master と一致する。
 - したがって以下に挙げる差分は、すべてフォークが独自に加えた変更である。
 
@@ -25,8 +25,8 @@
   `pnpm install --frozen-lockfile` → `pnpm run build` → `pnpm run serve`、`EXPOSE 3000`。
 
 ### バージョン系列
-- `package.json` の `version` を upstream の `5.3.0` に対して `5.3.0-psr.4.1` という
-  フォーク独自系列で運用 (`5.2.3-psr.4.0` から、5.3.0 取り込みに合わせて系列を進めた)。
+- `package.json` の `version` を upstream の `5.5.1` に対して `5.5.1-psr.4.3` という
+  フォーク独自系列で運用 (`5.3.0-psr.4.3` から、5.5.1 取り込みに合わせて系列を進めた)。
 - `name` は `@misskey-dev/summaly` のまま (npm publish しない前提なので衝突しない)。
 
 ### 依存追加・削除
@@ -113,7 +113,7 @@
 - `lint.yml` / `test.yml`:
   - Node を `22.20.0` → `24.15.0`。
   - `actions/checkout` を `v4` → `v6.0.2`。
-  - `pnpm/action-setup` を `v2` → `v6.0.5` (`version: 10.33.2` を明示)。
+  - `pnpm/action-setup` を `v2` → `v6.0.9` (`version: 11.6.0` を明示)。
   - `actions/setup-node` を `v4` → `v6.4.0`。
 - `.github/workflows/lint-gha-workflows.yaml` を新規追加し、
   [actionlint](https://github.com/rhysd/actionlint) でワークフローファイル自体を lint。
@@ -139,10 +139,8 @@
 
 ## 6. テスト
 
-- `test/index.test.ts` の YouTube テストで `icon` の参照先を
-  `.../78bc1359/img/logos/favicon.ico` から `.../2f190eaf/img/favicon.ico` に
-  追従修正 (commit `bdd5200`)。新しい YouTube ページ構造に合わせるためだけの
-  ピンポイント修正で、テスト構造そのものは upstream と同じ。
+- `test/index.test.ts` の YouTube テストは upstream 5.5.1 の期待値
+  (`.../14cba078/img/favicon.ico`) に追従。
 - 独自プラグインである `niconico` の専用テストは現状追加されていない。
 
 ---
