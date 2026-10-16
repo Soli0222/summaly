@@ -39,7 +39,7 @@
     "vitest": "4.1.11"
   },
   "dependencies": {
-    "chardet": "2.1.1",
+    "chardet": "2.2.0",
     "cheerio": "1.2.0",
     "escape-regexp": "0.0.1",
     "got": "15.1.0",
