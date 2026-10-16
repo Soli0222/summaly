@@ -24,7 +24,7 @@
     "serve": "fastify start ./built/index.js"
   },
   "devDependencies": {
-    "@misskey-dev/eslint-plugin": "2.2.0",
+    "@misskey-dev/eslint-plugin": "2.2.1",
     "@types/escape-regexp": "0.0.3",
     "@types/node": "24.12.4",
     "@typescript-eslint/eslint-plugin": "8.61.0",
