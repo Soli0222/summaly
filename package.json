@@ -45,7 +45,7 @@
     "got": "16.1.0",
     "html-entities": "2.6.0",
     "ipaddr.js": "2.5.0",
-    "pino": "10.3.1"
+    "pino": "10.4.0"
   },
   "optionalDependencies": {
     "fastify": "5.12.7"
