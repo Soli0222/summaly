@@ -1,3 +1,19 @@
+# Changelog
+
+## [5.5.1-psr.4.3.1](https://github.com/Soli0222/summaly/compare/5.5.1-psr.4.3...5.5.1-psr.4.3.1) (2026-10-21)
+
+
+### バグ修正・依存関係の更新
+
+* automate current Node.js releases and publish the Summaly chart ([#179](https://github.com/Soli0222/summaly/issues/179)) ([e65e2d6](https://github.com/Soli0222/summaly/commit/e65e2d654de7c9cc5dd03ce216db2a2eeef84316))
+* **ci:** restore Renovate status checks and surface errors ([#142](https://github.com/Soli0222/summaly/issues/142)) ([350a537](https://github.com/Soli0222/summaly/commit/350a537325284b333a30741e754cfe666b051ba7))
+* **deps:** update node chardet to v2.2.0 ([#164](https://github.com/Soli0222/summaly/issues/164)) ([615a4a3](https://github.com/Soli0222/summaly/commit/615a4a396f9183500b2975a29404119c0aa169e2))
+* **deps:** update node got to v15.1.0 ([#165](https://github.com/Soli0222/summaly/issues/165)) ([0a2cca6](https://github.com/Soli0222/summaly/commit/0a2cca64aa1de50a7c9fff8473b4cf062dd4b87c))
+* **deps:** update node got to v16 ([#173](https://github.com/Soli0222/summaly/issues/173)) ([4ac080d](https://github.com/Soli0222/summaly/commit/4ac080d1589f0de6d262002e0220b5de1043d9b2))
+* **deps:** update node ipaddr.js to v2.5.0 ([#166](https://github.com/Soli0222/summaly/issues/166)) ([b2d200d](https://github.com/Soli0222/summaly/commit/b2d200db2ed1197ae47cc866c8514811e48e4bee))
+* **deps:** update node pino to v10.4.0 ([#167](https://github.com/Soli0222/summaly/issues/167)) ([41728ba](https://github.com/Soli0222/summaly/commit/41728bae2676e81e38795ea3d1390302252f8de0))
+* keep TypeScript 6 until typescript-eslint supports TS 7 ([#175](https://github.com/Soli0222/summaly/issues/175)) ([7ffa9f1](https://github.com/Soli0222/summaly/commit/7ffa9f10b0c44a542ae1dee3f5763eec929c55d3))
+
 5.5.1 / 2026/06/20
 ------------------
 
