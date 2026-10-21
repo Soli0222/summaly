@@ -22,6 +22,15 @@ jobs:
       version: ${{ steps.release.outputs.version }}
       sha: ${{ steps.release.outputs.sha }}
     steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          ref: master
+          persist-credentials: false
+      - uses: actions/setup-node@v7.1.0
+        with:
+          node-version: 26.12.0
+      - name: Install release tools
+        run: npm ci --ignore-scripts --prefix scripts/release
       - name: Generate GitHub App token
         id: app-token
         uses: actions/create-github-app-token@v3.3.0
@@ -34,12 +43,9 @@ jobs:
           permission-pull-requests: write
       - name: Release Please
         id: release
-        uses: googleapis/release-please-action@v5.0.0
-        with:
-          target-branch: master
-          config-file: release-please-config.json
-          manifest-file: .release-please-manifest.json
-          token: ${{ steps.app-token.outputs.token }}
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+        run: npm run release --prefix scripts/release
 
   publish-image:
     name: Publish Application Image

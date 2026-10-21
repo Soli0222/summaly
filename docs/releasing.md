@@ -6,7 +6,11 @@ Renovate reads `renovate.json5` as repository configuration. It must not also be
 
 ## Release an application version
 
-A push to `master` runs release-please. The release PR updates package.json, the changelog, and `charts/summaly/Chart.yaml` appVersion. `fix` commits (including runtime updates) trigger a patch release; `feat` triggers a minor release. Git tags have no `v` prefix, retaining the repository's existing convention. The initial manifest and bootstrap commit start from the last published fork release; subsequent releases use stable SemVer.
+A push to `master` runs release-please with the repository's `psr` versioning strategy. Versions have the form `<upstream>-psr.<major>.<minor>.<patch>`. The upstream base stays unchanged during fork releases. The legacy `5.5.1-psr.4.3` is treated as fork version `4.3.0`: the next fix becomes `5.5.1-psr.4.3.1`, a feature becomes `5.5.1-psr.4.4.0`, and a breaking change becomes `5.5.1-psr.5.0.0`.
+
+The release PR updates package.json, the changelog, the release manifest, and `charts/summaly/Chart.yaml` appVersion. Git tags have no `v` prefix. Although SemVer interprets the suffix as a prerelease, these are normal production releases of this fork, so GitHub Releases use `prerelease: false`. Consumers must track this fork explicitly, not a stable-only npm version range. Chart versions use independent ordinary SemVer.
+
+Only when importing a new upstream base, include a `Release-As: 5.6.0-psr.4.4.0` commit footer with the intended full version. It must increase the previous version and retain the fork suffix. Ordinary dependency updates must not use `Release-As`.
 
 The weekly workflow merges only the GitHub App's release PR targeting `master`, after the `test` and `lint` jobs and all other checks succeed, with the checked head SHA pinned. For an urgent security release, run `Weekly Release PR Merge` manually after the release PR checks finish.
 
@@ -28,6 +32,8 @@ pnpm build
 SKIP_NETWORK_TEST=true pnpm test
 pnpm eslint
 python3 -m unittest discover -s scripts/release -p 'test_*.py'
+npm ci --ignore-scripts --prefix scripts/release
+npm test --prefix scripts/release
 helm lint --strict charts/summaly
 helm template summaly charts/summaly
 ```
