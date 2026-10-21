@@ -14,9 +14,9 @@ if (process.argv.includes('--dry-run')) {
 	const candidates = await (await loadManifest()).buildPullRequests();
 	for (const candidate of candidates) {
 		console.log(JSON.stringify({
-			version: candidate.pullRequest.version?.toString(),
-			title: candidate.pullRequest.title.toString(),
-			files: candidate.pullRequest.updates.map(update => update.path),
+			version: candidate.version?.toString(),
+			title: candidate.title.toString(),
+			files: candidate.updates.map(update => update.path),
 		}));
 	}
 } else {
