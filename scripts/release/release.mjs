@@ -1,10 +1,12 @@
 import { appendFileSync } from 'node:fs';
 import process from 'node:process';
 import console from 'node:console';
-import { GitHub, Manifest, registerVersioningStrategy } from 'release-please';
+import { GitHub, Manifest, registerVersioningStrategy, registerReleaseType } from 'release-please';
 import { ForkVersioningStrategy } from './fork-version.mjs';
+import { ForkNode } from './fork-node.mjs';
 
 registerVersioningStrategy('psr', () => new ForkVersioningStrategy());
+registerReleaseType('psr-node', options => new ForkNode(options));
 const [owner, repo] = process.env.GITHUB_REPOSITORY.split('/');
 const branch = process.env.RELEASE_BRANCH ?? 'master';
 const github = await GitHub.create({ owner, repo, token: process.env.GH_TOKEN, defaultBranch: branch });
@@ -15,6 +17,7 @@ if (process.argv.includes('--dry-run')) {
 	for (const candidate of candidates) {
 		console.log(JSON.stringify({
 			version: candidate.version?.toString(),
+			branch: candidate.headRefName,
 			title: candidate.title.toString(),
 			files: candidate.updates.map(update => update.path),
 		}));
