@@ -8,7 +8,7 @@ def candidate(pr, app):
     author = pr.get("author") or {}
     login = author.get("login", "").removeprefix("app/").removesuffix("[bot]")
     return bool(app) and (
-        pr["headRefName"] == "release-please--branches--master"
+        pr["headRefName"] == "release-please--branches--master--components--summaly"
         and not pr["isDraft"]
         and author.get("is_bot") is True
         and login == app

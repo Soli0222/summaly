@@ -5,7 +5,7 @@ from weekly_merge import candidate, checks_succeeded
 
 class WeeklyMergeTest(unittest.TestCase):
     def test_only_release_app_master_branch(self):
-        pr = {"headRefName": "release-please--branches--master", "isDraft": False,
+        pr = {"headRefName": "release-please--branches--master--components--summaly", "isDraft": False,
               "author": {"login": "app/release-bot", "is_bot": True}}
         self.assertTrue(candidate(pr, "release-bot"))
         self.assertFalse(candidate(pr, "different-app"))
