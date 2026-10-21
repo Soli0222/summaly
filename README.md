@@ -197,3 +197,7 @@ License
 [sakurako-badge]: https://img.shields.io/badge/%E5%A4%A7%E5%AE%A4-%E6%AB%BB%E5%AD%90-efb02a.svg?style=flat-square
 [npm-link]:       https://www.npmjs.com/package/@misskey-dev/summaly
 [npm-badge]:      https://img.shields.io/npm/v/@misskey-dev/summaly.svg?style=flat-square
+
+## Release and deployment
+
+See [release operations](docs/releasing.md) for the application and OCI Helm chart pipeline.

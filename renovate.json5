@@ -26,19 +26,6 @@
       'security',
     ],
   },
-  customManagers: [
-    {
-      customType: 'regex',
-      managerFilePatterns: [
-        '/^\\.github/workflows/.*\\.ya?ml$/',
-      ],
-      matchStrings: [
-        'node-version:\\s*\\[?[\'"]?(?<currentValue>\\d+\\.\\d+\\.\\d+)[\'"]?\\]?',
-      ],
-      depNameTemplate: 'node',
-      datasourceTemplate: 'docker',
-    },
-  ],
   packageRules: [
     {
       description: 'Keep TypeScript 6 until typescript-eslint supports TypeScript 7 (https://github.com/Soli0222/summaly/issues/174)',
@@ -79,6 +66,38 @@
       ],
       commitMessageTopic: 'Node {{depName}}',
       automerge: true,
+    },
+    {
+      "description": "Track the latest stable Node.js release, including new majors before LTS.",
+      "matchPackageNames": [
+        "node",
+        "@types/node"
+      ],
+      "versioning": "npm",
+      "enabled": true,
+      "ignoreUnstable": true,
+      "separateMajorMinor": false,
+      "automerge": true,
+      "semanticCommitType": "fix"
+    },
+    {
+      "description": "Do not delay runtime security updates; keep npm package cooldowns.",
+      "matchPackageNames": [
+        "node"
+      ],
+      "groupName": "Node.js",
+      "minimumReleaseAge": "0 days",
+      "minimumReleaseAgeBehaviour": "timestamp-optional"
+    },
+    {
+      "description": "Separate the Docker variant from the stable Node.js version.",
+      "matchDatasources": [
+        "docker"
+      ],
+      "matchPackageNames": [
+        "node"
+      ],
+      "versionCompatibility": "^(?<version>[^-]+)(?<compatibility>-.*)?$"
     },
   ],
 }

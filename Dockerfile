@@ -1,16 +1,13 @@
-# Use an official Node.js LTS image
-FROM node:24.16.0-alpine3.22 AS builder
+# Track the latest stable Node.js release
+FROM node:26.12.0-alpine AS builder
 
 # Set the working directory
 WORKDIR /usr/src/app
 
-# Install pnpm
-RUN npm install -g pnpm
-
-# Copy package.json and pnpm-lock.yaml (if available)
+# Install the package manager pinned by this repository
 COPY package.json ./
-# If you have a pnpm-lock.yaml, uncomment the next line
-COPY pnpm-lock.yaml ./
+RUN npm install --global "$(node -p 'require("./package.json").packageManager')"
+COPY pnpm-lock.yaml pnpm-workspace.yaml ./
 
 # Install dependencies
 RUN pnpm install --frozen-lockfile
@@ -24,4 +21,4 @@ RUN pnpm run build
 EXPOSE 3000
 
 # Command to run the application
-CMD ["pnpm", "run", "serve"]
+CMD ["pnpm", "run", "serve", "--address", "0.0.0.0"]
