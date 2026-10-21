@@ -1,5 +1,7 @@
-/node_modules
+node_modules/
 /built
 npm-debug.log
 .DS_Store
 
+
+__pycache__/
