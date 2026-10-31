@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.5.1-psr.4.3.3](https://github.com/Soli0222/summaly/compare/5.5.1-psr.4.3.2...5.5.1-psr.4.3.3) (2026-10-31)
+
+
+### バグ修正・依存関係の更新
+
+* **deps:** update node.js to v26.13.0 ([#189](https://github.com/Soli0222/summaly/issues/189)) ([d5d73e3](https://github.com/Soli0222/summaly/commit/d5d73e3e5408f933870980dbb94b64da60c72b83))
+
 ## [5.5.1-psr.4.3.2](https://github.com/Soli0222/summaly/compare/5.5.1-psr.4.3.1...5.5.1-psr.4.3.2) (2026-10-22)
 
 
