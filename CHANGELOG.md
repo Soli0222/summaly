@@ -1,5 +1,14 @@
 # Changelog
 
+## [5.5.1-psr.4.3.3](https://github.com/Soli0222/summaly/compare/5.5.1-psr.4.3.2...5.5.1-psr.4.3.3) (2026-11-07)
+
+
+### バグ修正・依存関係の更新
+
+* **deps:** update node @types/node to v26.6.6 ([#197](https://github.com/Soli0222/summaly/issues/197)) ([bae0c3e](https://github.com/Soli0222/summaly/commit/bae0c3e094e9f5bcb3a18136cfb689d4484ba1ca))
+* **deps:** update node got to v16.2.0 ([#200](https://github.com/Soli0222/summaly/issues/200)) ([bd1544d](https://github.com/Soli0222/summaly/commit/bd1544d0c7b01ca939f55a10c37be27e943b791f))
+* **deps:** update node.js to v26.13.0 ([#189](https://github.com/Soli0222/summaly/issues/189)) ([d5d73e3](https://github.com/Soli0222/summaly/commit/d5d73e3e5408f933870980dbb94b64da60c72b83))
+
 ## [5.5.1-psr.4.3.2](https://github.com/Soli0222/summaly/compare/5.5.1-psr.4.3.1...5.5.1-psr.4.3.2) (2026-10-22)
 
 
