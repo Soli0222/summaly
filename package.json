@@ -30,7 +30,7 @@
     "@types/escape-regexp": "0.0.3",
     "@types/node": "26.6.6",
     "fastify": "5.12.8",
-    "oxlint": "1.91.0",
+    "oxlint": "1.94.0",
     "oxlint-tsgolint": "7.0.2007",
     "pino-pretty": "13.2.0",
     "tsdown": "0.23.7",
