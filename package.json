@@ -28,7 +28,7 @@
     "@misskey-dev/oxlint-fmt-config": "0.1.1",
     "@stylistic/eslint-plugin": "5.10.0",
     "@types/escape-regexp": "0.0.3",
-    "@types/node": "26.6.6",
+    "@types/node": "26.6.10",
     "fastify": "5.12.8",
     "oxlint": "1.94.0",
     "oxlint-tsgolint": "7.0.2007",
