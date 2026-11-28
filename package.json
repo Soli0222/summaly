@@ -25,7 +25,7 @@
     "test:docker": "docker build -t summaly:test . && vitest run ./test/docker.test.ts"
   },
   "devDependencies": {
-    "@misskey-dev/oxlint-fmt-config": "0.1.1",
+    "@misskey-dev/oxlint-fmt-config": "0.2.0",
     "@stylistic/eslint-plugin": "5.10.0",
     "@types/escape-regexp": "0.0.3",
     "@types/node": "26.6.6",
